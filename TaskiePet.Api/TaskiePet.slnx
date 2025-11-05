@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="TaskiePet.Application/TaskiePet.Application.csproj" />
+  <Project Path="TaskiePet.Domain/TaskiePet.Domain.csproj" />
+  <Project Path="TaskiePet.Infrastructure/TaskiePet.Infrastructure.csproj" />
+  <Project Path="TaskiePet.WebApi/TaskiePet.WebApi.csproj" />
+</Solution>

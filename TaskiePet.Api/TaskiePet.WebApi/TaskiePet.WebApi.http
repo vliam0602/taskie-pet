@@ -1,0 +1,6 @@
+@TaskiePet.WebApi_HostAddress = http://localhost:5299
+
+GET {{TaskiePet.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
