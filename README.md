@@ -108,7 +108,7 @@ backend/
 
 ---
 
-## 3. Domain Model
+## 3. Domain Model (In progress)
 
 ### User
 
@@ -169,9 +169,8 @@ backend/
 ### Pet
 
 - As a logged in user, I can see the pet’s mood and level.
-
-- ~~As a logged in user, I can create a pet when I first log in.~~ (maybe latter)
-- ~~As a logged in user, I can feed or play with my pet.~~ (maybe latter)
+- As a logged in user, I can create a pet when I first log in.
+- As a logged in user, I can feed or play with my pet.
 
 ### Tasks
 
@@ -188,7 +187,7 @@ backend/
 
 ---
 
-## 5. REST API Endpoints
+## 5. REST API Endpoints (In progress)
 
 ### Auth
 
@@ -251,3 +250,10 @@ Triggered daily at 00:00:
 |    4 | Polish       | Daily reset job, UI animation, performance tuning |
 
 ---
+
+|  **Week**  | **Focus Area**                               | **Goal**                                                            | **Tech & Azure Learning Topics (AZ-204-aligned)**                                                                                                                                     | **Deliverables**                                                                                                                            |
+| :--------: | :------------------------------------------- | :------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Week 1** | 🧱 **Foundation + Auth**                     | Build frontend & backend skeleton and implement register/login flow | - Azure App Service (host Web API)<br>- Azure SQL Database (migrate DB)<br>- Azure Key Vault (store JWT secret)<br>- Managed Identity for secure access                               | ✅ React + .NET project setup<br>✅ JWT auth flow (register/login)<br>✅ Initial backend deployment to Azure App Service                    |
+| **Week 2** | ✅ **Task Module + Data Layer**              | Implement CRUD operations for tasks and persist data on Azure SQL   | - EF Core migration to Azure SQL<br>- Azure Storage Account (optional: file logs or uploads)<br>- Azure App Configuration (manage environment variables)                              | ✅ `/api/tasks` CRUD API<br>✅ Frontend Task Dashboard<br>✅ Database migrated and seeded on Azure SQL                                      |
+| **Week 3** | 🐾 **Pet Module + Background Jobs**          | Connect Task ↔ Pet logic and create a daily background reset job    | - Azure Functions (timer trigger for daily reset)<br>- Azure Service Bus (optional event queue)<br>- Azure Monitor (track background job logs)                                        | ✅ `/api/pets` CRUD + XP/Hunger logic<br>✅ Azure Function (daily pet/task reset)<br>✅ Event-driven link between Task and Pet updates      |
+| **Week 4** | 🌤 **Deployment + Monitoring + Final Polish** | Deploy full system and integrate cloud monitoring + CI/CD           | - Azure Application Insights (telemetry & logging)<br>- Azure Container Registry (Docker build)<br>- Azure Static Web Apps (host React frontend)<br>- GitHub Actions (CI/CD pipeline) | ✅ CI/CD pipeline (GitHub → Azure)<br>✅ Final UI/UX polish (animations, responsive design)<br>✅ Live application accessible via Azure URL |

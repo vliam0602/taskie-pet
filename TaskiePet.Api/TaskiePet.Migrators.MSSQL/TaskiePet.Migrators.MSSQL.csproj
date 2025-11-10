@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
-    <Folder Include="Repositories.Abstraction\" />
-    <Folder Include="Services.Abstraction\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TaskiePet.Infrastructure\TaskiePet.Infrastructure.csproj" />
   </ItemGroup>
 
