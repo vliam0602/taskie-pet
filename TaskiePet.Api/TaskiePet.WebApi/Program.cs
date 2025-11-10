@@ -1,5 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using TaskiePet.Application.Common;
+using TaskiePet.Application.Repositories.Abstraction;
+using TaskiePet.Application.Services;
+using TaskiePet.Application.Services.Abstraction;
 using TaskiePet.Infrastructure.Database;
+using TaskiePet.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +17,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
 
-var config = builder.Configuration;
+// Bind AppConfiguration from configuration
+var config = builder.Configuration.Get<AppConfiguration>();
+builder.Configuration.Bind(config);
+builder.Services.AddSingleton(config!);
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(config.GetConnectionString("DefaultDb")));
+    options.UseSqlServer(config!.ConnectionStrings.DefaultDb));
 
 builder.Services.AddCors(options =>
 {
@@ -24,6 +33,12 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader()
             .AllowAnyMethod());
 });
+
+#region Add repositories and services
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+builder.Services.AddScoped<IUserService, UserService>();
+#endregion
 
 var app = builder.Build();
 
@@ -43,26 +58,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
 app.UseCors("AllowReactClient");
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
 
 app.MapControllers();
 
@@ -73,8 +69,3 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

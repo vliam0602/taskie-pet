@@ -7,14 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
-    <Folder Include="Repositories.Abstraction\" />
-    <Folder Include="Services.Abstraction\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\TaskiePet.Domain\TaskiePet.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskiePet.Infrastructure\TaskiePet.Infrastructure.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.10" />
   </ItemGroup>
 
 </Project>
