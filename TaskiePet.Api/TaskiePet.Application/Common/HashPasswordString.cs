@@ -52,7 +52,7 @@ public static class HashPasswordString
 
     private static byte[] PBKDF2(string password, byte[] salt, int iterations, int outputBytes)
     {
-        using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations, HashAlgorithmName.SHA1))
+        using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations, HashAlgorithmName.SHA256))
         {
             return pbkdf2.GetBytes(outputBytes);
         }

@@ -20,7 +20,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             {
                 Id = Guid.Parse("019a6d2f-5e4a-713f-8ff5-6b87315cc15b"),
                 Email = "user@example.com",
-                PasswordHash = "YNVlhNyvL0xKNyE8GTr6a5s+F47FkuYYqCaawJxGn0lBgN0j", //password123
+                PasswordHash = "wMn+rPq2Ffj9KJkzl8+ErLXpL8CE9mDeErGJD+kJGOo2gKRa", //password123
                 CreatedDate = new DateTime(2024, 11, 10),
                 LastModifiedDate = new DateTime(2024, 11, 10),
             }
