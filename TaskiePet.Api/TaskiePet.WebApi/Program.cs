@@ -5,6 +5,7 @@ using TaskiePet.Application.Services;
 using TaskiePet.Application.Services.Abstraction;
 using TaskiePet.Infrastructure.Database;
 using TaskiePet.Infrastructure.Repositories;
+using TaskiePet.WebApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,6 +56,9 @@ if (app.Environment.IsDevelopment())
         return Task.CompletedTask;
     });
 }
+
+// Using global exception middleware
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
