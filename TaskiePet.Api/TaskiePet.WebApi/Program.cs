@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using TaskiePet.Application.Common;
 using TaskiePet.Application.Repositories.Abstraction;
 using TaskiePet.Application.Services;
@@ -10,13 +11,14 @@ using TaskiePet.WebApi.Middlewares;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers();
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddControllers();
+builder.Services.AddHealthChecks();
 
 // Bind AppConfiguration from configuration
 var config = builder.Configuration.Get<AppConfiguration>();
@@ -65,6 +67,8 @@ app.UseHttpsRedirection();
 app.UseCors("AllowReactClient");
 
 app.MapControllers();
+
+app.MapHealthChecks("/healthz");
 
 using (var scope = app.Services.CreateScope())
 {

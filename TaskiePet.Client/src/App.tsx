@@ -16,7 +16,7 @@ function App() {
   const [count, setCount] = useState(0);
 
   const [weather, setWeather] = useState<Weather[]>([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadWeather = async () => {
@@ -25,15 +25,16 @@ function App() {
         setWeather(data);
       } catch (error) {
         console.error("Failed to load weather: ", error);
-      } finally {
-        setLoading(false);
       }
+      // finally {
+      //   setLoading(false);
+      // } 
     };
     loadWeather();    
   }, []);
 
-  if (loading) return <p>Loading weather...</p>;
-  if (weather.length === 0) return <p>No weather found.</p>;
+  // if (loading) return <p>Loading weather...</p>;
+  // if (weather.length === 0) return <p>No weather found.</p>;
 
   return (
     <>
