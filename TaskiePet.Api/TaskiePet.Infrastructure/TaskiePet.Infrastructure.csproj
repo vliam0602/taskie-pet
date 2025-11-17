@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Database\" />
-    <Folder Include="Database.Configuration\" />
   </ItemGroup>
 
 </Project>

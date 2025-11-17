@@ -1,8 +1,8 @@
 using System;
 
-namespace TaskiePet.WebApi.DTOs;
+namespace TaskiePet.WebApi.Models.Response;
 
-public class TokenDto
+public class TokenResponse
 {
     public string AccessToken { get; set; } = default!;
     public string RefreshToken { get; set; } = default!;

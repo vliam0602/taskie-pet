@@ -59,7 +59,7 @@ Overview of the main stacks and project layout.
 ### Frontend — React 19 + TypeScript
 
 - Framework: React 19 with Vite
-- Styling: ...
+- Styling: TailwindCSS, DaisyUI
 - State management: React Context + custom hooks
 - Data fetching: Axios services
 - Architecture: feature-based structure

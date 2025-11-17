@@ -3,7 +3,7 @@ using System.Data;
 using System.Net;
 using System.Text.Json;
 using TaskiePet.Application.Constants;
-using TaskiePet.WebApi.DTOs;
+using TaskiePet.WebApi.Models.Response;
 
 namespace TaskiePet.WebApi.Middlewares;
 
@@ -40,7 +40,7 @@ public class ExceptionHandlingMiddleware(
             errMessage = ErrorMessages.UnexpectedError(ex.Message);
         }
 
-        var apiResponse = new ApiResponse
+        var apiResponse = new ApiResponse<object>
         {
             IsSuccess = false,
             Message = errMessage

@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using TaskiePet.Application.Services.Abstraction;
 using TaskiePet.Domain.Entities;
-using TaskiePet.WebApi.DTOs;
 using TaskiePet.Application.Common;
 using TaskiePet.Application.Constants;
 using System.Data;
+using Microsoft.AspNetCore.Identity.Data;
+using TaskiePet.WebApi.Models.Response;
 
 namespace TaskiePet.WebApi.Controllers;
 
@@ -21,15 +22,15 @@ public class AuthController(
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
+    public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
         // verify login
         var account = await userService
-            .GetUserByEmailAndPasswordAsync(loginDto.Email, loginDto.Password);
+            .GetUserByEmailAndPasswordAsync(request.Email, request.Password);
 
         if (account == null)
         {
-            return Unauthorized(new ApiResponse
+            return Unauthorized(new ApiResponse<object>
             {
                 IsSuccess = false,
                 Message = ErrorMessages.WrongUsernamePassword
@@ -38,7 +39,7 @@ public class AuthController(
         // login success -> issue (access token, refresh token)
         var tokens = GenerateTokens(account);
 
-        return Ok(new ApiResponse
+        return Ok(new ApiResponse<TokenResponse>
         {
             Message = SuccessMessages.LoginSuccess,
             Data = tokens
@@ -46,17 +47,17 @@ public class AuthController(
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] LoginDto registerDto)
+    public async Task<IActionResult> Register([FromBody] LoginRequest request)
     {
-        await userService.CreateNewAccountAsync(registerDto.Email, registerDto.Password);
-        return CreatedAtAction(nameof(Register), new ApiResponse
+        await userService.CreateNewAccountAsync(request.Email, request.Password);
+        return CreatedAtAction(nameof(Register), new ApiResponse<object>
         {
             Message = SuccessMessages.RegisterSuccess,
-            Data = registerDto.Email
+            Data = request.Email
         });
     }
 
-    private TokenDto GenerateTokens(User user)
+    private TokenResponse GenerateTokens(User user)
     {
         var jwtConfig = appConfig.JwtConfiguration;
         var issueDate = DateTime.Now;
@@ -67,7 +68,7 @@ public class AuthController(
         var refreshToken = user.GenerateJwt(
             jwtConfig.SecretKey, issueDate.AddHours(jwtConfig.RTExpHours));
 
-        return new TokenDto
+        return new TokenResponse
         {
             AccessToken = accessToken,
             RefreshToken = refreshToken
