@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using TaskiePet.Application.Common;
 using TaskiePet.Application.Repositories.Abstraction;
 using TaskiePet.Application.Services;
@@ -37,11 +36,13 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod());
 });
 
-#region Add repositories and services
+// Add repositories and services
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IDailyTaskRepository, DailyTaskRepository>();
 
 builder.Services.AddScoped<IUserService, UserService>();
-#endregion
+builder.Services.AddScoped<IDailyTaskService, DailyTaskService>();
+
 
 var app = builder.Build();
 
@@ -73,7 +74,24 @@ app.MapHealthChecks("/healthz");
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
+
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    logger.LogInformation($"Connection string: {config!.ConnectionStrings.DefaultDb}");
+
+    try
+    {
+        logger.LogInformation("Applying migrations...");
+        db.Database.Migrate();
+        logger.LogInformation("Migrations applied successfully");
+
+        var canConnect = db.Database.CanConnect();
+        logger.LogInformation($"Can connect to database: {canConnect}");
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "Error applying migrations");
+        throw;
+    }
 }
 
 app.Run();

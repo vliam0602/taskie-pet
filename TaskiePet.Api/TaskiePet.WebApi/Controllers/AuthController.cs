@@ -3,9 +3,9 @@ using TaskiePet.Application.Services.Abstraction;
 using TaskiePet.Domain.Entities;
 using TaskiePet.Application.Common;
 using TaskiePet.Application.Constants;
-using System.Data;
 using Microsoft.AspNetCore.Identity.Data;
 using TaskiePet.WebApi.Models.Response;
+using TaskiePet.Application.DTOs;
 
 namespace TaskiePet.WebApi.Controllers;
 
@@ -26,7 +26,7 @@ public class AuthController(
     {
         // verify login
         var account = await userService
-            .GetUserByEmailAndPasswordAsync(request.Email, request.Password);
+            .GetUserByEmailAndPasswordAsync(new UserCredentialDto { Email = request.Email, Password = request.Password });
 
         if (account == null)
         {
@@ -49,7 +49,7 @@ public class AuthController(
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] LoginRequest request)
     {
-        await userService.CreateNewAccountAsync(request.Email, request.Password);
+        await userService.CreateNewAccountAsync(new UserCredentialDto { Email = request.Email, Password = request.Password });
         return CreatedAtAction(nameof(Register), new ApiResponse<object>
         {
             Message = SuccessMessages.RegisterSuccess,

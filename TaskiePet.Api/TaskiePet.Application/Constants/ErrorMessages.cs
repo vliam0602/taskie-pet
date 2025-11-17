@@ -10,4 +10,5 @@ public static class ErrorMessages
     // Business Errors
     public const string WrongUsernamePassword = "Wrong username/password.";
     public const string DuplicateEmail = "Email is already registered.";
+    public const string DailyTaskNotFound = "Daily task not found.";
 }

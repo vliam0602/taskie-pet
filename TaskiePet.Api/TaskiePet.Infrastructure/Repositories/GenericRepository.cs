@@ -18,5 +18,15 @@ public class GenericRepository<T>(AppDbContext dbContext) : IGenericRepository<T
         await _dbContext.SaveChangesAsync();
     }
 
-    // Implement interface methods...    
+    public async Task DeleteAsync(T entity)
+    {
+        _dbSet.Remove(entity);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public void Update(T entity)
+    {
+        _dbSet.Update(entity);
+        _dbContext.SaveChanges();
+    }
 }
