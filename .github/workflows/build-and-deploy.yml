@@ -7,7 +7,7 @@ on:
       - main
 
 env:
-  AZURE_WEBAPP_NAME: "taskie-pet"
+  AZURE_WEBAPP_NAME: "liam-taskiepet"
   AZURE_WEBAPP_PACKAGE_PATH: "./TaskiePet.Api/TaskiePet.WebApi"
   DOTNET_VERSION: "9.x"
   SOLUTION_PATH: "./TaskiePet.Api/TaskiePet.slnx"
