@@ -47,18 +47,15 @@ builder.Services.AddScoped<IDailyTaskService, DailyTaskService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-    app.MapOpenApi();
+app.UseSwagger();
+app.UseSwaggerUI();
+app.MapOpenApi();
 
-    app.MapGet("/", ctx =>
-    {
-        ctx.Response.Redirect("/swagger");
-        return Task.CompletedTask;
-    });
-}
+app.MapGet("/", ctx =>
+{
+    ctx.Response.Redirect("/swagger");
+    return Task.CompletedTask;
+});
 
 // Using global exception middleware
 app.UseMiddleware<ExceptionHandlingMiddleware>();
