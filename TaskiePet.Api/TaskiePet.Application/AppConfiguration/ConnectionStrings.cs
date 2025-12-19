@@ -4,5 +4,5 @@ namespace TaskiePet.Application.AppConfiguration;
 
 public class ConnectionStrings
 {
-    public string DefaultDb { get; set; } = default!;
+    public string DefaultDb { get; set; } = string.Empty;
 }

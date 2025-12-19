@@ -5,6 +5,6 @@ namespace TaskiePet.Application.Common;
 
 public class AppConfiguration
 {
-    public ConnectionStrings ConnectionStrings { get; set; } = default!;
-    public JwtConfiguration JwtConfiguration { get; set; } = default!;
+    public ConnectionStrings ConnectionStrings { get; set; } = new();
+    public JwtConfiguration JwtConfiguration { get; set; } = new();
 }

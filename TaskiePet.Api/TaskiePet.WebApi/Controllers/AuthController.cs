@@ -3,9 +3,9 @@ using TaskiePet.Application.Services.Abstraction;
 using TaskiePet.Domain.Entities;
 using TaskiePet.Application.Common;
 using TaskiePet.Application.Constants;
-using Microsoft.AspNetCore.Identity.Data;
 using TaskiePet.WebApi.Models.Response;
 using TaskiePet.Application.DTOs;
+using TaskiePet.WebApi.Models.Request;
 
 namespace TaskiePet.WebApi.Controllers;
 

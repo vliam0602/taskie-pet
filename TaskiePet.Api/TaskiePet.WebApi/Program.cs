@@ -9,6 +9,10 @@ using TaskiePet.WebApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var isOpenApiDocumentGeneration = Environment.GetCommandLineArgs().Any(arg =>
+    arg.Contains("dotnet-getdocument", StringComparison.OrdinalIgnoreCase) ||
+    arg.Contains("GetDocument", StringComparison.OrdinalIgnoreCase));
+
 // Add services to the container.
 builder.Services.AddControllers();
 
@@ -20,12 +24,30 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHealthChecks();
 
 // Bind AppConfiguration from configuration
-var config = builder.Configuration.Get<AppConfiguration>();
+var config = builder.Configuration.Get<AppConfiguration>() ?? new AppConfiguration();
 builder.Configuration.Bind(config);
-builder.Services.AddSingleton(config!);
+builder.Services.AddSingleton(config);
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(config!.ConnectionStrings.DefaultDb));
+var connectionString = config.ConnectionStrings.DefaultDb;
+
+// IMPORTANT: Build-time OpenAPI generation loads and runs Program.cs.
+// In that mode, do not require a real SQL connection string / database.
+if (isOpenApiDocumentGeneration)
+{
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseInMemoryDatabase("TaskiePet_OpenApi"));
+}
+else
+{
+    if (string.IsNullOrEmpty(connectionString))
+    {
+        throw new InvalidOperationException(
+            "Missing connection string.");
+    }
+
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseSqlServer(connectionString));
+}
 
 builder.Services.AddCors(options =>
 {
@@ -70,24 +92,30 @@ app.MapHealthChecks("/healthz");
 
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-
     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-    logger.LogInformation($"Connection string: {config!.ConnectionStrings.DefaultDb}");
+    logger.LogInformation($"OpenAPI build-time generation: {isOpenApiDocumentGeneration}");
 
-    try
+    // Only apply migrations when a real DB is configured (avoid breaking build-time OpenAPI generation).
+    if (!isOpenApiDocumentGeneration &&
+        app.Environment.IsDevelopment() &&
+        !string.IsNullOrEmpty(connectionString))
     {
-        logger.LogInformation("Applying migrations...");
-        db.Database.Migrate();
-        logger.LogInformation("Migrations applied successfully");
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-        var canConnect = db.Database.CanConnect();
-        logger.LogInformation($"Can connect to database: {canConnect}");
-    }
-    catch (Exception ex)
-    {
-        logger.LogError(ex, "Error applying migrations");
-        throw;
+        try
+        {
+            logger.LogInformation("Applying migrations...");
+            db.Database.Migrate();
+            logger.LogInformation("Migrations applied successfully");
+
+            var canConnect = db.Database.CanConnect();
+            logger.LogInformation($"Can connect to database: {canConnect}");
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error applying migrations");
+            throw;
+        }
     }
 }
 
