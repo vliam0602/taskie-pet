@@ -59,7 +59,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiAuthLoginPost**
-> apiAuthLoginPost(loginRequest)
+> ApiResponseOfTokenResponse apiAuthLoginPost(loginRequest)
 
 
 ### Example
@@ -90,7 +90,7 @@ const { status, data } = await apiInstance.apiAuthLoginPost(
 
 ### Return type
 
-void (empty response body)
+**ApiResponseOfTokenResponse**
 
 ### Authorization
 
@@ -99,7 +99,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: Not defined
+ - **Accept**: text/plain, application/json, text/json
 
 
 ### HTTP response details
@@ -110,7 +110,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiAuthRegisterPost**
-> apiAuthRegisterPost(loginRequest)
+> ApiResponseOfObject apiAuthRegisterPost(loginRequest)
 
 
 ### Example
@@ -141,7 +141,7 @@ const { status, data } = await apiInstance.apiAuthRegisterPost(
 
 ### Return type
 
-void (empty response body)
+**ApiResponseOfObject**
 
 ### Authorization
 
@@ -150,7 +150,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: Not defined
+ - **Accept**: text/plain, application/json, text/json
 
 
 ### HTTP response details

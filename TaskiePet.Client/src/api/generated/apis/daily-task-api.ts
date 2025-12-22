@@ -22,6 +22,10 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
+import type { ApiResponseOfDailyTask } from '../models';
+// @ts-ignore
+import type { ApiResponseOfIEnumerableOfDailyTask } from '../models';
+// @ts-ignore
 import type { DailyTaskCreateRequest } from '../models';
 // @ts-ignore
 import type { DailyTaskMarkCompletedRequest } from '../models';
@@ -227,7 +231,7 @@ export const DailyTaskApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiDailyTaskGet(userId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async apiDailyTaskGet(userId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseOfIEnumerableOfDailyTask>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiDailyTaskGet(userId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DailyTaskApi.apiDailyTaskGet']?.[localVarOperationServerIndex]?.url;
@@ -240,7 +244,7 @@ export const DailyTaskApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiDailyTaskMarkCompletedTaskIdPut(taskId: string, dailyTaskMarkCompletedRequest: DailyTaskMarkCompletedRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async apiDailyTaskMarkCompletedTaskIdPut(taskId: string, dailyTaskMarkCompletedRequest: DailyTaskMarkCompletedRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseOfDailyTask>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiDailyTaskMarkCompletedTaskIdPut(taskId, dailyTaskMarkCompletedRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DailyTaskApi.apiDailyTaskMarkCompletedTaskIdPut']?.[localVarOperationServerIndex]?.url;
@@ -252,7 +256,7 @@ export const DailyTaskApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiDailyTaskPost(dailyTaskCreateRequest: DailyTaskCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async apiDailyTaskPost(dailyTaskCreateRequest: DailyTaskCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseOfDailyTask>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiDailyTaskPost(dailyTaskCreateRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DailyTaskApi.apiDailyTaskPost']?.[localVarOperationServerIndex]?.url;
@@ -264,7 +268,7 @@ export const DailyTaskApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiDailyTaskTaskIdGet(taskId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async apiDailyTaskTaskIdGet(taskId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseOfDailyTask>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiDailyTaskTaskIdGet(taskId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DailyTaskApi.apiDailyTaskTaskIdGet']?.[localVarOperationServerIndex]?.url;
@@ -277,7 +281,7 @@ export const DailyTaskApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiDailyTaskTaskIdPut(taskId: string, dailyTaskUpdateRequest: DailyTaskUpdateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async apiDailyTaskTaskIdPut(taskId: string, dailyTaskUpdateRequest: DailyTaskUpdateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ApiResponseOfDailyTask>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.apiDailyTaskTaskIdPut(taskId, dailyTaskUpdateRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DailyTaskApi.apiDailyTaskTaskIdPut']?.[localVarOperationServerIndex]?.url;
@@ -298,7 +302,7 @@ export const DailyTaskApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDailyTaskGet(requestParameters: DailyTaskApiApiDailyTaskGetRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        apiDailyTaskGet(requestParameters: DailyTaskApiApiDailyTaskGetRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseOfIEnumerableOfDailyTask> {
             return localVarFp.apiDailyTaskGet(requestParameters.userId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -307,7 +311,7 @@ export const DailyTaskApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDailyTaskMarkCompletedTaskIdPut(requestParameters: DailyTaskApiApiDailyTaskMarkCompletedTaskIdPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        apiDailyTaskMarkCompletedTaskIdPut(requestParameters: DailyTaskApiApiDailyTaskMarkCompletedTaskIdPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseOfDailyTask> {
             return localVarFp.apiDailyTaskMarkCompletedTaskIdPut(requestParameters.taskId, requestParameters.dailyTaskMarkCompletedRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -316,7 +320,7 @@ export const DailyTaskApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDailyTaskPost(requestParameters: DailyTaskApiApiDailyTaskPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        apiDailyTaskPost(requestParameters: DailyTaskApiApiDailyTaskPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseOfDailyTask> {
             return localVarFp.apiDailyTaskPost(requestParameters.dailyTaskCreateRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -325,7 +329,7 @@ export const DailyTaskApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDailyTaskTaskIdGet(requestParameters: DailyTaskApiApiDailyTaskTaskIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        apiDailyTaskTaskIdGet(requestParameters: DailyTaskApiApiDailyTaskTaskIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseOfDailyTask> {
             return localVarFp.apiDailyTaskTaskIdGet(requestParameters.taskId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -334,7 +338,7 @@ export const DailyTaskApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiDailyTaskTaskIdPut(requestParameters: DailyTaskApiApiDailyTaskTaskIdPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        apiDailyTaskTaskIdPut(requestParameters: DailyTaskApiApiDailyTaskTaskIdPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<ApiResponseOfDailyTask> {
             return localVarFp.apiDailyTaskTaskIdPut(requestParameters.taskId, requestParameters.dailyTaskUpdateRequest, options).then((request) => request(axios, basePath));
         },
     };

@@ -22,7 +22,7 @@ public class AuthController(
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginRequest request)
+    public async Task<ActionResult<ApiResponse<TokenResponse>>> Login([FromBody] LoginRequest request)
     {
         // verify login
         var account = await userService
@@ -47,7 +47,7 @@ public class AuthController(
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] LoginRequest request)
+    public async Task<ActionResult<ApiResponse<object>>> Register([FromBody] LoginRequest request)
     {
         await userService.CreateNewAccountAsync(new UserCredentialDto { Email = request.Email, Password = request.Password });
         return CreatedAtAction(nameof(Register), new ApiResponse<object>

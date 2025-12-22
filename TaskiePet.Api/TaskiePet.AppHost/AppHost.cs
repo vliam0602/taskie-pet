@@ -9,18 +9,18 @@ var sql = builder.AddSqlServer("sqlserver")
                     .WithPassword(sqlPassword)
                     .WithLifetime(ContainerLifetime.Persistent);
 
-var db = sql.AddDatabase("taskiepet-db");
+var taskiepetDb = sql.AddDatabase("taskiepet-db");
 
-var api = builder.AddProject<Projects.TaskiePet_WebApi>("taskiepet-api")
-                .WithReference(db)
+var apiService = builder.AddProject<Projects.TaskiePet_WebApi>("taskiepet-api")
+                .WithReference(taskiepetDb)
                 .WithHttpHealthCheck("/healthz")
-                .WaitFor(db);
+                .WaitFor(sql);
 
 var web = builder.AddNpmApp("taskiepet-fe", Path.Combine("..", "..", "TaskiePet.Client"))
-                    .WithReference(api)
+                    .WithReference(apiService)
                     // .WithHttpEndpoint(port: 5173)
                     // .WithExternalHttpEndpoints()
                     // .WithHttpHealthCheck("/index.html")
-                    .WaitFor(api);
+                    .WaitFor(apiService);
 
 builder.Build().Run();

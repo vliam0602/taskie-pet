@@ -1,13 +1,16 @@
-import './App.css'
-import Login from './pages/Login';
+import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import Router from "./routes";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
-
   return (
-    <>
-    <Login />
-    </>
-  )
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={Router} />
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;

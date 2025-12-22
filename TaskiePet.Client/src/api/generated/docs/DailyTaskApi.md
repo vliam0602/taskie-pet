@@ -11,7 +11,7 @@ All URIs are relative to *http://localhost*
 |[**apiDailyTaskTaskIdPut**](#apidailytasktaskidput) | **PUT** /api/DailyTask/{taskId} | |
 
 # **apiDailyTaskGet**
-> apiDailyTaskGet()
+> ApiResponseOfIEnumerableOfDailyTask apiDailyTaskGet()
 
 
 ### Example
@@ -41,7 +41,7 @@ const { status, data } = await apiInstance.apiDailyTaskGet(
 
 ### Return type
 
-void (empty response body)
+**ApiResponseOfIEnumerableOfDailyTask**
 
 ### Authorization
 
@@ -50,7 +50,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: text/plain, application/json, text/json
 
 
 ### HTTP response details
@@ -61,7 +61,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiDailyTaskMarkCompletedTaskIdPut**
-> apiDailyTaskMarkCompletedTaskIdPut(dailyTaskMarkCompletedRequest)
+> ApiResponseOfDailyTask apiDailyTaskMarkCompletedTaskIdPut(dailyTaskMarkCompletedRequest)
 
 
 ### Example
@@ -95,7 +95,7 @@ const { status, data } = await apiInstance.apiDailyTaskMarkCompletedTaskIdPut(
 
 ### Return type
 
-void (empty response body)
+**ApiResponseOfDailyTask**
 
 ### Authorization
 
@@ -104,7 +104,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: Not defined
+ - **Accept**: text/plain, application/json, text/json
 
 
 ### HTTP response details
@@ -115,7 +115,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiDailyTaskPost**
-> apiDailyTaskPost(dailyTaskCreateRequest)
+> ApiResponseOfDailyTask apiDailyTaskPost(dailyTaskCreateRequest)
 
 
 ### Example
@@ -146,7 +146,7 @@ const { status, data } = await apiInstance.apiDailyTaskPost(
 
 ### Return type
 
-void (empty response body)
+**ApiResponseOfDailyTask**
 
 ### Authorization
 
@@ -155,18 +155,18 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: Not defined
+ - **Accept**: text/plain, application/json, text/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | OK |  -  |
+|**201** | Created |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiDailyTaskTaskIdGet**
-> apiDailyTaskTaskIdGet()
+> ApiResponseOfDailyTask apiDailyTaskTaskIdGet()
 
 
 ### Example
@@ -196,7 +196,7 @@ const { status, data } = await apiInstance.apiDailyTaskTaskIdGet(
 
 ### Return type
 
-void (empty response body)
+**ApiResponseOfDailyTask**
 
 ### Authorization
 
@@ -205,7 +205,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: text/plain, application/json, text/json
 
 
 ### HTTP response details
@@ -216,7 +216,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **apiDailyTaskTaskIdPut**
-> apiDailyTaskTaskIdPut(dailyTaskUpdateRequest)
+> ApiResponseOfDailyTask apiDailyTaskTaskIdPut(dailyTaskUpdateRequest)
 
 
 ### Example
@@ -250,7 +250,7 @@ const { status, data } = await apiInstance.apiDailyTaskTaskIdPut(
 
 ### Return type
 
-void (empty response body)
+**ApiResponseOfDailyTask**
 
 ### Authorization
 
@@ -259,7 +259,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json, text/json, application/*+json
- - **Accept**: Not defined
+ - **Accept**: text/plain, application/json, text/json
 
 
 ### HTTP response details

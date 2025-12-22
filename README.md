@@ -171,13 +171,13 @@ Frontend (React + TypeScript)
 
 ## 6. Tech Stack Summary
 
-| Layer    | Technology                                               |
-| :------- | :------------------------------------------------------- |
-| Frontend | React 19, TypeScript, Vite                               |
-| Backend  | .NET 9 Web API, Entity Framework Core, BackgroundService |
-| Auth     | JWT                                                      |
-| Database | SQL Server                                               |
-| Deploy   | Dockerfile                                               |
+| Layer    | Technology                                                                                    |
+| :------- | :-------------------------------------------------------------------------------------------- |
+| Frontend | React 19, TypeScript, Vite, Axios, TailwindCSS (DaisyUI), React router dom, OpenApi Generator |
+| Backend  | .NET 9 Web API, Entity Framework Core, BackgroundService, OpenApi                             |
+| Auth     | JWT                                                                                           |
+| Database | SQL Server                                                                                    |
+| Deploy   | Dockerfile                                                                                    |
 
 ---
 
